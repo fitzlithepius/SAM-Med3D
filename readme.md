@@ -1,7 +1,7 @@
-# SAM-Med3D \[[Paper](https://arxiv.org/abs/2310.15161)] \[[Suppl](https://github.com/uni-medical/SAM-Med3D/blob/main/paper/SAM_Med3D_ECCV_Supplementary.pdf)\] \[[Data](https://drive.google.com/file/d/1F7lRWM5mdEKSRQtvJ8ExEyNrWIEkXc-G/view?usp=drive_link)\]
+# SAM-Med3D \[[Paper](https://arxiv.org/abs/2310.15161)] \[[Suppl](https://github.com/uni-medical/SAM-Med3D/blob/main/paper/SAM_Med3D_ECCV_Supplementary.pdf)\] \[[Data](https://huggingface.co/datasets/blueyo0/SA-Med3D-140K)\]
 [![x](https://img.shields.io/badge/cs.CV-2310.15161-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2310.15161)
 [![x](https://img.shields.io/badge/WeChat-Group-green?logo=wechat)](https://github.com/uni-medical/SAM-Med3D/tree/main?tab=readme-ov-file#-discussion-group)
-[![x](https://img.shields.io/badge/Python-3.10-A7D8FF)]()
+[![x](https://img.shields.io/badge/Python-3.9|3.10-A7D8FF)]()
 [![x](https://img.shields.io/badge/PyTorch-2.6-FCD299)]()
 
 The official repo of "SAM-Med3D: Towards General-purpose Segmentation Models for Volumetric Medical Images".
@@ -11,9 +11,9 @@ The official repo of "SAM-Med3D: Towards General-purpose Segmentation Models for
 </div>
 
 ## 🔥🌻📰 News 📰🌻🔥
+- **[Data]** We have now released all of our dataset SA-Med3D-140K. Full Dataset Download Link: [Huggingface](https://huggingface.co/datasets/blueyo0/SA-Med3D-140K). Labels Download Link: [Baidu Netdisk](https://pan.baidu.com/s/12Nxwd10uVZs57O8WP8Y-Hg?pwd=cv6t) and [Google Drive](https://drive.google.com/file/d/1F7lRWM5mdEKSRQtvJ8ExEyNrWIEkXc-G/view?usp=drive_link).
 - **[Challenge]** SAM-Med3D is invited as a baseline of [CVPR-MedSegFMCompetition](https://www.codabench.org/competitions/5263/) and the tutorial is [here](https://github.com/uni-medical/SAM-Med3D/tree/CVPR25_3DFM). We kindly invite you to join the challenge and build better foundation models for 3D medical image segmentation!
 - **[Examples]** SAM-Med3D is now supported in [MedIM](https://github.com/uni-medical/MedIM), you can easily get our model with one-line Python code. Details can be found in [`medim_val_single.py`](https://github.com/uni-medical/SAM-Med3D/blob/main/medim_val_single.py).
-- **[Data]** We have now released all labels of our training dataset SA-Med3D-140K. Due to the large volume of image data (over 1T), we are currently seeking an appropriate release method. For now, you can directly contact small_dark@sina.com to obtain it. Download Link: [Baidu Netdisk](https://pan.baidu.com/s/12Nxwd10uVZs57O8WP8Y-Hg?pwd=cv6t) and [Google Drive](https://drive.google.com/file/d/1F7lRWM5mdEKSRQtvJ8ExEyNrWIEkXc-G/view?usp=drive_link).
 - **[Paper]** SAM-Med3D is accepted as [ECCV BIC 2024 Oral](https://www.bioimagecomputing.com/program/selected-contributions/)
 - **[Model]** A newer version of finetuned SAM-Med3D named `SAM-Med3D-turbo` is released now. We fine-tuned it on 44 datasets ([list](https://github.com/uni-medical/SAM-Med3D/issues/2#issuecomment-1849002225)) to improve the performance. Hope this update can help you 🙂.
 - **[Repos]** If you are interested in computer vision, 
@@ -138,23 +138,8 @@ img_datas = glob(os.path.join(PROJ_DIR, "data", "train", "*", "*"))
 
 
 #### 2. **Run the Training Script**: 
-Run `bash train.sh` to execute the following command in your terminal:
+You can refer to [`train.sh`](https://github.com/uni-medical/SAM-Med3D/blob/main/train.sh) and [train_ddp.sh](https://github.com/uni-medical/SAM-Med3D/blob/main/train_ddp.sh) for training.
 
-```
-python train.py --multi_gpu --task_name ${tag}
-```
-This will start the training process of the SAM-Med3D model on your prepared data. If you use only one GPU, remove the `--multi_gpu` flag.
-
-The key options are listed below:
-
-- task_name: task name
-- checkpoint: pre-trained checkpoint
-- work_dir: results folder for log and ckpt
-- multi_gpu: use multiple GPU with DDP
-- gpu_ids: set gpu ids used for training
-- batch_size: batch size for each GPU
-- num_epochs: number of epoches
-- lr: learning rate for training
 
 
 **Hint**: Use the `--checkpoint` to set the pre-trained weight path, the model will be trained from scratch if no ckpt in the path is found!
